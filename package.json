@@ -1,0 +1,31 @@
+{
+  "name": "gagtalk-mandarin",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "build/index.js",
+  "scripts": {
+    "start": "npm run build && node build/index.js",
+    "build": "npx tsc",
+    "ts-node": "npx ts-node src/index.ts",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dwscdv3/gagtalk-mandarin.git"
+  },
+  "author": "Dwscdv3",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Dwscdv3/gagtalk-mandarin/issues"
+  },
+  "homepage": "https://github.com/Dwscdv3/gagtalk-mandarin#readme",
+  "dependencies": {
+    "nodejieba": "=2.5.2",
+    "pinyin": "^3.0.0-alpha.5"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.11",
+    "typescript": "^4.9.3"
+  }
+}
