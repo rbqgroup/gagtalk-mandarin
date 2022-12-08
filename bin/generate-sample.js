@@ -9,15 +9,15 @@ function generateMarkdownSample(input) {
     return `\
 输入：${input}
 
-|   口塞种类   | 翻译结果                                |
-|:------------:|-----------------------------------------|
-|   布条口塞   | ${garble(input, GagTypes.cleave)}       |
-|    开口器    | ${garble(input, GagTypes.ringMask)}     |
-|   空心口球   | ${garble(input, GagTypes.hollowedBall)} |
-|   实心口球   | ${garble(input, GagTypes.solidBall)}    |
-|   深喉口塞   | ${garble(input, GagTypes.deepthroat)}   |
-|   束颈口塞   | ${garble(input, GagTypes.mouthCorset)}  |
-| 机器音变声器 | ${garble(input, GagTypes.robot)}        |
+| GagTypes     | 输出结果                                |
+|--------------|-----------------------------------------|
+| cleave       | ${garble(input, GagTypes.cleave)}       |
+| ringMask     | ${garble(input, GagTypes.ringMask)}     |
+| hollowedBall | ${garble(input, GagTypes.hollowedBall)} |
+| solidBall    | ${garble(input, GagTypes.solidBall)}    |
+| deepthroat   | ${garble(input, GagTypes.deepthroat)}   |
+| mouthCorset  | ${garble(input, GagTypes.mouthCorset)}  |
+| robot        | ${garble(input, GagTypes.robot)}        |
 `;
 }
 
