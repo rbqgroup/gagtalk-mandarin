@@ -15,7 +15,7 @@ const finalMap: FinalMap = {
     ...hollowedBall.finalMap,
     er: 'er',
 };
-const specialMap = {
+const specialMap: SpecialMap = {
     ...hollowedBall.specialMap,
 };
 const excludedTonesList = new Set(<DefinedPronunciation[]>[
