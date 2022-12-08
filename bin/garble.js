@@ -6,7 +6,7 @@ const args = process.argv.slice(2);
 const gagType = args.shift();
 const text = args.join(' ');
 
-if (args.length < 2 || !(gagType in GagTypes)) {
+if (args.length < 1 || !(gagType in GagTypes)) {
     console.log(`
 Usage:
 node bin/garble.js <gagType> <text>
