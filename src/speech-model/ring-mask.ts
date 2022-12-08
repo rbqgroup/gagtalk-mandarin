@@ -29,7 +29,7 @@ const handlers: ConditionalHandler[] = [{
     func: text => chineseGarbler.garble(text),
 }, {
     predicate: char => /[a-zA-Z]/.test(char),
-    func: text => BondageClubGarbler.SpeechGarbleByGagLevel(6, text),
+    func: text => BondageClubGarbler.SpeechGarbleByGagLevel(5, text),
 }];
 
 export { handlers, initialMap, finalMap, specialMap, excludedTonesList };
