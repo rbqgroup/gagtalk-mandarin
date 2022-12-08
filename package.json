@@ -10,6 +10,9 @@
     "ts-node": "npx ts-node src/index.ts",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
+  "bin": {
+    "gagtalk": "bin/garble.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Dwscdv3/gagtalk-mandarin.git"
