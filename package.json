@@ -21,8 +21,8 @@
   },
   "homepage": "https://github.com/Dwscdv3/gagtalk-mandarin#readme",
   "dependencies": {
-    "nodejieba": "=2.5.2",
-    "pinyin": "^3.0.0-alpha.5"
+    "@dwscdv3/pinyin": "^3.0.0-alpha.6",
+    "nodejieba": "=2.5.2"
   },
   "devDependencies": {
     "@types/node": "^18.11.11",

@@ -1,4 +1,4 @@
-import * as hotoo from 'pinyin';
+import * as hotoo from '@dwscdv3/pinyin';
 import { AllPinyinSet, Final, PinyinParseSpecialCases, StrictInitial, Tone, ValidPinyin } from './dataset/pinyin.js';
 
 export default function pinyin(text: string) {
