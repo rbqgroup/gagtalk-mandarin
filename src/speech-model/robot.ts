@@ -3,7 +3,7 @@ import { ConditionalHandler } from '..';
 
 const handlers: ConditionalHandler[] = [{
     predicate: char => true,
-    func: text => pinyin(text).join(' '),
+    func: text => pinyin(text, { style: 'tone' }).join(' '),
 }];
 
 export { handlers };

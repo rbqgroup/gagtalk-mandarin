@@ -1,8 +1,9 @@
 import * as hotoo from '@dwscdv3/pinyin';
+import { IPinyinOptions } from '@dwscdv3/pinyin/lib/declare.js';
 import { AllPinyinSet, Final, PinyinParseSpecialCases, StrictInitial, Tone, ValidPinyin } from './dataset/pinyin.js';
 
-export default function pinyin(text: string) {
-    return hotoo.pinyin(text, { segment: true, style: 'tone2' })
+export default function pinyin(text: string, options?: IPinyinOptions) {
+    return hotoo.pinyin(text, { segment: true, style: 'tone2', ...options })
         .map(arr => arr[0].replace('v', 'ü'));
 }
 
