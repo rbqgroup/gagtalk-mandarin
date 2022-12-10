@@ -40,8 +40,7 @@ garble 方法将输入字符按照一定的条件交由不同的处理程序处�
 | cleave       | 天地含黄 呃ˇ热哼ˊ荒 热呃ˋ盈呃ˋ 神树列嚷 ehe kuiek baown hok aumpz ovea ehe aasy mom. |
 | ringMask     | 安呃ˋ含杭 呃ˇ热哼ˊ杭ˉ 热呃ˋ嗯ˊ呃ˋ 很ˊ互热嚷 ehe keekk faean mek aemfh efea ehe aahe mem.     |
 | hollowedBall | 安呃ˋ含杭 呃ˇ呃ˋ哼ˊ杭ˉ 呃ˋ呃ˋ嗯ˊ呃ˋ 很ˊ互呃ˋ昂ˉ ehe keeka faeam mek aemfh efea ehe aehe mem. |
-| solidBall    | 安呃ˋ安ˊ昂 呃ˇ呃ˋ嗯ˊ昂ˉ 呃ˋ呃ˋ嗯ˊ呃ˋ 嗯ˊ呜ˋ呃ˋ昂ˉ mhe meema baemm mem aemmh emea mhe 
-aehe mem.    |
+| solidBall    | 安呃ˋ安ˊ昂 呃ˇ呃ˋ嗯ˊ昂ˉ 呃ˋ呃ˋ嗯ˊ呃ˋ 嗯ˊ呜ˋ呃ˋ昂ˉ mhe meema baemm mem aemmh emea mhe aehe mem.    |
 | deepthroat   | 嗯呃嗯昂 呜呃嗯昂 呃呃嗯呃 嗯呜呃昂 mhe meema baemm mem aemmh emea mhe aehe mem.   | 
 | mouthCorset  | ¯ˋˊˊ ˇˋˊ¯ ˋˋˊˋ ˊˋˋ¯ mmm mmmph mmmph mmm mmmph mmph mmm mmph mmm.  |
 | robot        | tian di xuan huang yu zhou hong huang ri yue ying ze chen su lie zhang The quick brown fox jumps oüer the lazy dog.        |
