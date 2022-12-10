@@ -56,13 +56,15 @@ const excludedTonesList = new Set(<DefinedPronunciation[]>[
     'u2', 'gu3', 'gu4',
 ]);
 
-const chineseGarbler = new ChineseGarbler(initialMap, finalMap, specialMap, excludedTonesList, {
-    tone: 'none',
-});
+const chineseGarbler = new ChineseGarbler(initialMap, finalMap, specialMap, excludedTonesList);
 
 const handlers: ConditionalHandler[] = [{
     predicate: char => char.charCodeAt(0) >= 0x4E00 && char.charCodeAt(0) < 0xA000,
-    func: text => chineseGarbler.garble(text),
+    func: (text, options) => chineseGarbler.garble(text, {
+        ...options,
+        toneStyle: 'none',
+        preserveUnaffectedHanzi: false,
+    }),
 }, {
     predicate: char => /[a-zA-Z]/.test(char),
     func: text => BondageClubGarbler.SpeechGarbleByGagLevel(7, text),

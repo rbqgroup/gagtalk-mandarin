@@ -55,7 +55,7 @@ const chineseGarbler = new ChineseGarbler(initialMap, finalMap, specialMap, excl
 
 const handlers: ConditionalHandler[] = [{
     predicate: char => char.charCodeAt(0) >= 0x4E00 && char.charCodeAt(0) < 0xA000,
-    func: text => chineseGarbler.garble(text),
+    func: (text, options) => chineseGarbler.garble(text, options),
 }, {
     predicate: char => /[a-zA-Z]/.test(char),
     func: text => BondageClubGarbler.SpeechGarbleByGagLevel(7, text),

@@ -15,25 +15,28 @@ export default class ChineseGarbler {
     finalMap: FinalMap;
     specialMap: SpecialMap;
     excludedTones: Set<DefinedPronunciation>;
-    options: ChineseGarblerOptions;
+    defaultOptions: ChineseGarblerOptions;
+    private options: ChineseGarblerOptions;
 
     constructor(
         initialMap: InitialMap,
         finalMap: FinalMap,
         specialMap: SpecialMap,
         excludedTonesSet = new Set<DefinedPronunciation>(),
-        options?: ChineseGarblerOptions,
+        defaultOptions?: ChineseGarblerOptions,
     ) {
         this.initialMap = initialMap;
         this.finalMap = finalMap;
         this.specialMap = specialMap;
         this.excludedTones = excludedTonesSet;
-        this.options = options ?? {};
-        this.options.tone ??= 'right';
+        this.defaultOptions = defaultOptions ?? {};
+        this.defaultOptions.toneStyle ??= 'right';
+        this.defaultOptions.preserveUnaffectedHanzi ??= true;
         this.checkUnhandledCases();
     }
 
-    garble(text: string) {
+    garble(text: string, overrideOptions?: ChineseGarblerOptions) {
+        this.options = { ...this.defaultOptions, ...overrideOptions };
         return pinyin(text)
             .map((py, index) => {
                 const parts = pinyin.parts(py);
@@ -41,9 +44,10 @@ export default class ChineseGarbler {
                 const useTone = !this.excludedTones.has(garbled as DefinedPronunciation);
                 return (
                     // original hanzi if mapped as is
-                    `${parts.initial}${parts.final}${parts.tone}` == garbled ? text[index] :
+                    (this.options.preserveUnaffectedHanzi && `${parts.initial}${parts.final}${parts.tone}` == garbled)
+                        ? text[index]
                         // tone specific hanzi if exists
-                        (useTone ? PinyinToHanziDict[garbled] : null)
+                        : (useTone ? PinyinToHanziDict[garbled] : null)
                         ?? (PinyinToHanziDict[garbled.slice(0, -1)]
                             // tone generic hanzi if exists
                             ? PinyinToHanziDict[garbled.slice(0, -1)]
@@ -65,14 +69,15 @@ export default class ChineseGarbler {
     }
 
     private getToneChar(tone: number) {
-        return this.options.tone == 'above'
+        return this.options.toneStyle == 'above'
             ? ['', ...'̄́̌̀'][tone]
-            : this.options.tone == 'right'
+            : this.options.toneStyle == 'right'
                 ? ['', ...'ˉˊˇˋ'][tone]
                 : '';
     }
 
     private checkUnhandledCases() {
+        this.options = { ...this.defaultOptions };
         const set = new Set();
         for (const py of AllPinyinSet) {
             const garbled = this.garblePinyin(py).slice(0, -1);
@@ -89,6 +94,13 @@ export default class ChineseGarbler {
 export type InitialMap = { [initial in Initial]?: StrictInitial | 'i' | 'u' };
 export type FinalMap = { [final in Final]: Final };
 export type SpecialMap = { [pinyin in ValidPinyin]?: DefinedPronunciation };
-interface ChineseGarblerOptions {
-    tone?: 'above' | 'right' | 'none';
+export type ChineseGarblerOptions = {
+    /**
+     * @default "right"
+     */
+    toneStyle?: 'above' | 'right' | 'none';
+    /**
+     * @default true
+     */
+    preserveUnaffectedHanzi?: boolean;
 }

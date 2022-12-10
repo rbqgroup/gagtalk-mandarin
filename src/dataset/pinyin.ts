@@ -256,19 +256,23 @@ export const PostProcessSpecialCases: { [key: string]: DefinedPronunciation } = 
 };
 
 export type DefinedPronunciation = keyof typeof PinyinToHanziDict;
-export type StrictInitial = '' |
-    'b' | 'p' | 'm' | 'f' | 'd' | 't' | 'n' | 'l' |
-    'g' | 'k' | 'h' | 'j' | 'q' | 'x' |
-    'zh' | 'ch' | 'sh' | 'r' | 'z' | 'c' | 's';
+export type StrictInitial =
+    | ''
+    | 'b' | 'p' | 'm' | 'f' | 'd' | 't' | 'n' | 'l'
+    | 'g' | 'k' | 'h' | 'j' | 'q' | 'x'
+    | 'zh' | 'ch' | 'sh' | 'r' | 'z' | 'c' | 's'
+    ;
 export type Initial = StrictInitial | 'y' | 'w';
-export type Final = '-' |
-    'a' | 'ai' | 'an' | 'ang' | 'ao' |
-    'e' | 'ei' | 'en' | 'eng' | 'er' |
-    'i' | 'ia' | 'ian' | 'iang' | 'iao' | 'ie' | 'in' | 'ing' | 'io' | 'iong' | 'iu' |
-    'o' | 'ong' | 'ou' |
-    'u' | 'ua' | 'uai' | 'uan' | 'uang' | 'ueng' | 'ui' | 'un' | 'uo' |
-    'ü' | 'üan' | 'üe' | 'ün' |
-    'ng';
+export type Final =
+    | '-'
+    | 'a' | 'ai' | 'an' | 'ang' | 'ao'
+    | 'e' | 'ei' | 'en' | 'eng' | 'er'
+    | 'i' | 'ia' | 'ian' | 'iang' | 'iao' | 'ie' | 'in' | 'ing' | 'io' | 'iong' | 'iu'
+    | 'o' | 'ong' | 'ou'
+    | 'u' | 'ua' | 'uai' | 'uan' | 'uang' | 'ueng' | 'ui' | 'un' | 'uo'
+    | 'ü' | 'üan' | 'üe' | 'ün'
+    | 'ng'
+    ;
 export type Tone = 0 | 1 | 2 | 3 | 4;
 export type ValidPinyin = typeof AllPinyins[number];
 export type ValidPinyinWithTone = `${typeof AllPinyins[number]}${Tone}`;

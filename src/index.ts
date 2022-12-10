@@ -5,10 +5,14 @@ import hollowedBall from './speech-model/hollowed-ball.js';
 import ringMask from './speech-model/ring-mask.js';
 import cleave from './speech-model/cleave.js';
 import robot from './speech-model/robot.js';
+import { ChineseGarblerOptions } from './chinese-garbler.js';
 
 const AllowedSymbols = new Set(' \n\t.。?？,，!！…~～—');
 
-function garble(text: string, handlers: ConditionalHandler[]) {
+/**
+ * @param handlers See GagTypes
+ */
+function garble(text: string, handlers: ConditionalHandler[], options?: GarbleOptions) {
     handlers.unshift({
         predicate: char => AllowedSymbols.has(char),
         func: text => text,
@@ -27,7 +31,7 @@ function garble(text: string, handlers: ConditionalHandler[]) {
         for (const handler of handlers) {
             if (handler.predicate(char)) {
                 if (handler.func != pendingHandler) {
-                    result += pendingHandler(text.slice(pendingStartIndex, i));
+                    result += pendingHandler(text.slice(pendingStartIndex, i), options);
                     pendingHandler = handler.func;
                     pendingStartIndex = i;
                 }
@@ -35,7 +39,7 @@ function garble(text: string, handlers: ConditionalHandler[]) {
             }
         }
     }
-    result += pendingHandler(text.slice(pendingStartIndex));
+    result += pendingHandler(text.slice(pendingStartIndex), options);
     return result;
 }
 
@@ -49,9 +53,12 @@ const GagTypes = {
     robot,
 };
 
+export type GarbleOptions =
+    & ChineseGarblerOptions
+    ;
 export type ConditionalHandler = {
     predicate: (char: string) => boolean;
-    func: (text: string) => string;
+    func: (text: string, options?: GarbleOptions) => string;
 }
 
 export { garble, GagTypes };
