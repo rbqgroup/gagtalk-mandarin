@@ -41,19 +41,20 @@ export default class ChineseGarbler {
             .map((py, index) => {
                 const parts = pinyin.parts(py);
                 const garbled = this.garblePinyin(py);
+                const garbledLetters = garbled.slice(0, -1);
                 const useTone = !this.excludedTones.has(garbled as DefinedPronunciation);
                 return (
                     // original hanzi if mapped as is
-                    (this.options.preserveUnaffectedHanzi && `${parts.initial}${parts.final}${parts.tone}` == garbled)
+                    (this.options.preserveUnaffectedHanzi &&
+                        `${parts.initial}${parts.final}${parts.tone}` == garbled)
                         ? text[index]
                         // tone specific hanzi if exists
                         : (useTone ? PinyinToHanziDict[garbled] : null)
-                        ?? (PinyinToHanziDict[garbled.slice(0, -1)]
+                        ?? (PinyinToHanziDict[garbledLetters]
                             // tone generic hanzi if exists
-                            ? PinyinToHanziDict[garbled.slice(0, -1)]
-                            + this.getToneChar(pinyin.parts(py).tone)
+                            ? PinyinToHanziDict[garbled.slice(0, -1)] + this.getToneChar(parts.tone)
                             // pinyin letters
-                            : ' ' + garbled.slice(0, -1) + ' ')
+                            : ` ${garbled.slice(0, -1)} `)
                 );
             })
             .join('');
