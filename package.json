@@ -1,6 +1,6 @@
 {
   "name": "gagtalk-mandarin",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Translate Mandarin Chinese into gagtalk.",
   "type": "module",
   "main": "build/index.js",
