@@ -61,10 +61,10 @@ const finalMap: FinalMap = {
     ui: 'ui',       // ooo
     un: 'un',       // ooo
     uo: 'e',        // oo
-    ü: 'e',         // oo
-    üan: 'an',      // o
-    üe: 'e',        // o
-    ün: 'en',       // o
+    ü: 'i',         // ooo
+    üan: 'ian',      // oo
+    üe: 'ie',        // oo
+    ün: 'in',       // oo
     ng: 'ng',       // oooo
 };
 const specialMap: SpecialMap = {};
