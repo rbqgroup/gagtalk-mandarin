@@ -2,8 +2,9 @@ import ChineseGarbler, { ChineseGarblerOptions } from '../chinese-garbler.js';
 import { ConditionalHandler } from '../index.js';
 import KanaGarbler from '../kana-garbler.js';
 import BondageClubGarbler, { BondageClubGarblerLevel } from '../lib/bondage-club-garbler.js';
-import { toZhDigit } from '../lib/to-zh-digit.js';
+import nzh from 'nzh';
 import { isHanzi, isNumeric, isASCIILetter, isKana } from './char.js';
+import nzhcn from 'nzh/cn';
 
 export const createHandlers = ({
     chineseGarbler,
@@ -18,7 +19,7 @@ export const createHandlers = ({
     }),
 }, {
     predicate: isNumeric,
-    func: (text, options) => chineseGarbler.garble(toZhDigit(text), {
+    func: (text, options) => chineseGarbler.garble(nzh.cn.encodeS(text), {
         ...options,
         ...chineseGarblerOptions,
     }),

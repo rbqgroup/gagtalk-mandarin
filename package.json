@@ -1,6 +1,6 @@
 {
   "name": "gagtalk-mandarin",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Translate Mandarin Chinese into gagtalk.",
   "type": "module",
   "main": "build/index.js",
@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/rbqgroup/gagtalk-mandarin#readme",
   "dependencies": {
-    "@dwscdv3/pinyin": "^3.0.0-alpha.6"
+    "@dwscdv3/pinyin": "^3.0.0-alpha.6",
+    "nzh": "^1.0.8"
   },
   "devDependencies": {
     "@types/node": "^18.11.11",
