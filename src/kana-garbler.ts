@@ -32,7 +32,14 @@ export default class KanaGarbler {
             const char = text[i] as Kana;
             const nextChar = text[i + 1] as Kana | undefined;
             const _isKatakana = isKatakana(char);
-            const hiragana = (_isKatakana ? katakanaToHiragana(char): char);
+            let hiragana = (_isKatakana ? katakanaToHiragana(char): char);
+            const isSmall = 'ぁぃぅぇぉ'.includes(hiragana);
+            if (hiragana as string == 'ゔ') {
+                hiragana = 'う';
+            }
+            if (isSmall) {
+                hiragana = String.fromCharCode(hiragana.charCodeAt(0) + 1) as Hiragana;
+            }
             const nextHiragana = nextChar && (isKatakana(nextChar) == _isKatakana)
                 ? isKatakana(nextChar) ? katakanaToHiragana(nextChar) : nextChar
                 : null;
@@ -45,6 +52,9 @@ export default class KanaGarbler {
             } else if (HiraganaSet.has(hiragana)) {
                 const romaji = HiraganaToRomajiDict[hiragana];
                 garbled = RomajiToHiraganaDict[this.garbleRomaji(romaji)];
+                if (isSmall) {
+                    garbled = String.fromCharCode(garbled.charCodeAt(0) - 1) as Hiragana;
+                }
             }
             garbled ??= 'ん';
             result += _isKatakana ? hiraganaToKatakana(garbled) : garbled;

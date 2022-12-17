@@ -7,7 +7,7 @@ import cleave from './speech-model/cleave.js';
 import robot from './speech-model/robot.js';
 import { ChineseGarblerOptions } from './chinese-garbler.js';
 
-const AllowedSymbols = new Set(' \n\t.。?？,，!！…~～—');
+const AllowedSymbols = new Set(' 　\n\t.。?？,，!！…~～—ーっ');
 
 /**
  * @param handlers See GagTypes
