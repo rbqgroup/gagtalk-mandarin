@@ -19,9 +19,9 @@ export function isKana(char: string | number): char is Kana {
 }
 export function isHiragana(char: string | number): char is Hiragana {
     char = typeof char == 'string' ? char.charCodeAt(0) : char;
-    return (char >= 0x3041 && char <= 0x308F);
+    return (char >= 0x3041 && char <= 0x3094);
 }
 export function isKatakana(char: string | number): char is Katakana {
     char = typeof char == 'string' ? char.charCodeAt(0) : char;
-    return (char >= 0x30A1 && char <= 0x30EF);
+    return (char >= 0x30A1 && char <= 0x30F4);
 }
