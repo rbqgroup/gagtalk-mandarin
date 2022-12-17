@@ -14,7 +14,8 @@ const AllowedSymbols = new Set(' \n\t.。?？,，!！…~～—');
  */
 function garble(text: string, handlers: ConditionalHandler[], options?: GarbleOptions) {
     handlers.unshift({
-        predicate: char => AllowedSymbols.has(char),
+        predicate: char => AllowedSymbols.has(char)
+            || (char.codePointAt(0)! >= 0x1F000 && char.codePointAt(0)! <= 0x1FFFF),
         func: text => text,
     });
     handlers.push({
@@ -25,21 +26,21 @@ function garble(text: string, handlers: ConditionalHandler[], options?: GarbleOp
     });
     let result = '';
     let pendingHandler: ConditionalHandler['func'] = text => '';
-    let pendingStartIndex = 0;
-    for (let i = 0; i < text.length; i++) {
-        const char = text[i];
+    let pendingText = '';
+    for (const char of text) {
         for (const handler of handlers) {
             if (handler.predicate(char)) {
                 if (handler.func != pendingHandler) {
-                    result += pendingHandler(text.slice(pendingStartIndex, i), options);
+                    result += pendingHandler(pendingText, options);
                     pendingHandler = handler.func;
-                    pendingStartIndex = i;
+                    pendingText = '';
                 }
+                pendingText += char;
                 break;
             }
         }
     }
-    result += pendingHandler(text.slice(pendingStartIndex), options);
+    result += pendingHandler(pendingText, options);
     return result;
 }
 

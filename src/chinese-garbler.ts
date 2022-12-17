@@ -92,9 +92,9 @@ export default class ChineseGarbler {
     }
 }
 
-export type InitialMap = { [initial in Initial]?: StrictInitial | 'i' | 'u' };
-export type FinalMap = { [final in Final]: Final };
-export type SpecialMap = { [pinyin in ValidPinyin]?: DefinedPronunciation };
+export type InitialMap = { [Key in Initial]?: StrictInitial | 'i' | 'u' };
+export type FinalMap = { [Key in Final]: Final };
+export type SpecialMap = { [Key in ValidPinyin]?: DefinedPronunciation };
 export type ChineseGarblerOptions = {
     /**
      * @default "right"

@@ -181,7 +181,7 @@ export const PinyinToHanziDict = {
 
 // Special case ju-, qu-, xu- is handled by src/pinyin.ts: pinyin.parts
 export const PinyinParseSpecialCases:
-    { [pinyin in ValidPinyin]?: [StrictInitial, Final] } = {
+    { [Key in ValidPinyin]?: [StrictInitial, Final] } = {
     ng: ['', 'en'],
     wa: ['', 'ua'],
     wai: ['', 'uai'],

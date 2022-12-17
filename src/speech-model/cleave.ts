@@ -1,7 +1,7 @@
-import BondageClubGarbler from '../lib/bondage-club-garbler.js';
 import ChineseGarbler, { FinalMap, InitialMap, SpecialMap } from '../chinese-garbler.js';
 import { DefinedPronunciation } from '../dataset/pinyin.js';
-import { ConditionalHandler } from '../index.js';
+import KanaGarbler, { ConsonantMap, VowelMap } from '../kana-garbler.js';
+import { createHandlers } from '../util/handler.js';
 
 const initialMap: InitialMap = {
     b: 'u',
@@ -70,15 +70,38 @@ const finalMap: FinalMap = {
 const specialMap: SpecialMap = {};
 const excludedTonesList = new Set(<DefinedPronunciation[]>[]);
 
+const consonantMap: ConsonantMap = {
+    k: 'k',
+    s: 'h',
+    t: 't',
+    n: 'n',
+    h: 'h',
+    m: 'w',
+    y: 'y',
+    r: 'r',
+    w: 'w',
+    g: 'g',
+    z: undefined,
+    d: 'd',
+    b: 'w',
+    p: 'h',
+};
+const vowelMap: VowelMap = {
+    a: 'a',
+    i: 'i',
+    u: 'u',
+    e: 'e',
+    o: 'o',
+};
+
 const chineseGarbler = new ChineseGarbler(initialMap, finalMap, specialMap, excludedTonesList);
+const kanaGarbler = new KanaGarbler(consonantMap, vowelMap);
 
-const handlers: ConditionalHandler[] = [{
-    predicate: char => char.charCodeAt(0) >= 0x4E00 && char.charCodeAt(0) < 0xA000,
-    func: (text, options) => chineseGarbler.garble(text, options),
-}, {
-    predicate: char => /[a-zA-Z]/.test(char),
-    func: text => BondageClubGarbler.SpeechGarbleByGagLevel(2, text),
-}];
+const handlers = createHandlers({
+    chineseGarbler,
+    kanaGarbler,
+    bondageClubGarblerLevel: 2,
+});
 
-export { handlers, initialMap, finalMap, specialMap, excludedTonesList };
+export { handlers, initialMap, finalMap, specialMap, excludedTonesList, consonantMap, vowelMap };
 export default handlers;

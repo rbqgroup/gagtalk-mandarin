@@ -11,6 +11,7 @@
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "sourceMap": true,
+      "allowJs": true,
       "strict": true,
       "suppressImplicitAnyIndexErrors": true,
       "skipLibCheck": true,
