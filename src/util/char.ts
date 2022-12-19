@@ -1,5 +1,11 @@
 import { Kana, Hiragana, Katakana } from '../dataset/kana.js';
 
+const AllowedSymbols = new Set(' 　\n\t.。?？,，!！…~～—ーっ');
+
+export function isSymbol(char: string | number) {
+    char = typeof char == 'number' ? String.fromCodePoint(0) : char;
+    return AllowedSymbols.has(char);
+}
 export function isNumeric(char: string | number) {
     char = typeof char == 'string' ? char.charCodeAt(0) : char;
     return char >= 0x30 && char <= 0x39;
@@ -24,4 +30,8 @@ export function isHiragana(char: string | number): char is Hiragana {
 export function isKatakana(char: string | number): char is Katakana {
     char = typeof char == 'string' ? char.charCodeAt(0) : char;
     return (char >= 0x30A1 && char <= 0x30F4);
+}
+export function isEmoji(char: string | number): char is Katakana {
+    char = typeof char == 'string' ? char.codePointAt(0)! : char;
+    return (char >= 0x1F000 && char <= 0x1FFFF);
 }

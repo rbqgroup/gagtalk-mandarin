@@ -6,16 +6,17 @@ import ringMask from './speech-model/ring-mask.js';
 import cleave from './speech-model/cleave.js';
 import robot from './speech-model/robot.js';
 import { ChineseGarblerOptions } from './chinese-garbler.js';
-
-const AllowedSymbols = new Set(' 　\n\t.。?？,，!！…~～—ーっ');
+import { isEmoji, isSymbol } from './util/char.js';
 
 /**
  * @param handlers See GagTypes
  */
 function garble(text: string, handlers: ConditionalHandler[], options?: GarbleOptions) {
     handlers.unshift({
-        predicate: char => AllowedSymbols.has(char)
-            || (char.codePointAt(0)! >= 0x1F000 && char.codePointAt(0)! <= 0x1FFFF),
+        predicate: isSymbol,
+        func: text => text,
+    }, {
+        predicate: options?.emoji ? isEmoji : () => false,
         func: text => text,
     });
     handlers.push({
@@ -56,7 +57,12 @@ const GagTypes = {
 
 export type GarbleOptions =
     & ChineseGarblerOptions
-    ;
+    & {
+        /**
+         * @default false
+         */
+        emoji?: boolean;
+    };
 export type ConditionalHandler = {
     predicate: (char: string) => boolean;
     func: (text: string, options?: GarbleOptions) => string;
