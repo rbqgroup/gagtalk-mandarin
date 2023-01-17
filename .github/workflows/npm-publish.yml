@@ -23,7 +23,7 @@ jobs:
           scope: '@rbqgroup'
       - run: npm ci
       - run: npm run build
-      - run: npm config set registry https://npm.pkg.github.com
+      - run: cat /home/runner/work/_temp/.npmrc
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
