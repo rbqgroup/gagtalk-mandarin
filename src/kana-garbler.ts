@@ -46,7 +46,7 @@ export default class KanaGarbler {
             let garbled: Hiragana;
 
             if (HiraganaSet.has((hiragana + nextHiragana) as Hiragana)) {
-                const romaji = HiraganaToRomajiDict[hiragana + nextHiragana];
+                const romaji = HiraganaToRomajiDict[(hiragana + nextHiragana) as Hiragana];
                 garbled = RomajiToHiraganaDict[this.garbleRomaji(romaji)];
                 i++;
             } else if (HiraganaSet.has(hiragana)) {

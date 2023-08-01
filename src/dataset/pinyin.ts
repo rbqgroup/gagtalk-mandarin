@@ -1,6 +1,6 @@
 // 加数字的条目是声调特定汉字。如果没有，则回落到无数字的条目，并可选加入声调标注。
 // 拟声字、含义有趣的字是加分项，生僻字和多音字是减分项甚至可能不予采用。
-export const PinyinToHanziDict = {
+const _PinyinToHanziDict = {
     a: '啊',
     ai: '哎',
     an: '安', an1: '安', an3: '俺', an4: '暗',
@@ -178,6 +178,8 @@ export const PinyinToHanziDict = {
     rui: '蕊', rui3: '蕊', rui4: '瑞',
     run: '润', run4: '润',
 };
+export const PinyinToHanziDict = _PinyinToHanziDict as
+    typeof _PinyinToHanziDict & Record<string, string | undefined>;
 
 // Special case ju-, qu-, xu- is handled by src/pinyin.ts: pinyin.parts
 export const PinyinParseSpecialCases:

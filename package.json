@@ -23,10 +23,10 @@
   "homepage": "https://github.com/rbqgroup/gagtalk-mandarin#readme",
   "dependencies": {
     "@dwscdv3/pinyin": "^3.0.0-alpha.6",
-    "nzh": "^1.0.8"
+    "nzh": "^1.0.9"
   },
   "devDependencies": {
-    "@types/node": "^18.11.11",
-    "typescript": "^4.9.3"
+    "@types/node": "^18.17.1",
+    "typescript": "^5.1.6"
   }
 }
